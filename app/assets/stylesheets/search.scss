@@ -1,0 +1,141 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+main #search-results {
+
+  .query-term {
+    font-weight: bold;
+  }
+
+
+  .pagination {
+    margin-top: -0.5rem;
+    margin-bottom: 1.75rem;
+    .arrow.unavailable {
+      color: #e6e6e6;
+    }
+  }
+
+
+  #search-facets-options {
+    margin-top: 2rem;
+    font-size: 90%;
+    padding-right: 1rem;
+
+    h2 {
+      text-transform: uppercase;
+      font-size: 1em;
+      border-bottom: 1px solid $grayLightest;
+    }
+
+    h3 {
+      font-size: 1em;
+      margin-bottom: 0.25em;
+      font-weight: bold;
+    }
+
+    .active-facet {
+      font-weight: bold;
+    }
+
+    .facet {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 90%;
+        line-height: 1.1em;
+
+        li {
+          padding: 0.25em 0;
+          list-style: none;
+
+          &:last-child {
+            border: 0;
+          }
+          &:first-child {
+            padding-top: 0;
+          }
+        }
+        &.date-range-options li {
+          margin: 0;
+        }
+      }
+      .scrollable {
+        background: $grayGhost;
+
+        ul li {
+          border-bottom: 1px solid $grayLightest;
+        }
+      }
+    }
+
+  }
+
+
+  #active-filters {
+    font-size: 0.9em;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+    .label {
+      @extend .simple-label;
+      text-transform: uppercase;
+      font-size: 0.9em;
+    }
+    .active-facet {
+      padding-right: 0.5rem;
+    }
+  }
+
+
+  a.remove-facet-link {
+    color: $red;
+    padding-left: 0.25em;
+    font-size: 150%;
+    vertical-align: -0.08em;
+
+    &:hover {
+      color: $red2;
+    }
+  }
+
+
+  .search-result {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $grayLightest;
+    position: relative;
+
+  }
+
+
+  .component-results {
+    margin-top: 1rem;
+
+    .list-heading {
+      text-transform: uppercase;
+      font-size: 80%;
+      margin-bottom: 0.5rem;
+    }
+
+    ul, li {
+      font-size: 90%;
+      line-height: 1.1em;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: .5rem;
+      .component-title {
+        font-weight: bold;
+      }
+    }
+
+  }
+
+
+}
