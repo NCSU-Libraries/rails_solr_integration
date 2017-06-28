@@ -136,7 +136,6 @@ module SearchHelper
 
   def active_filters
     if !@filters.blank?
-
       output = '<div class="row" id="active-filters">'
       output << "<span class=\"label\">#{'Filter'.pluralize(@filters.length)}:</span> "
       @filters.each do |k,v|
@@ -147,6 +146,22 @@ module SearchHelper
       output << '</div>'
       output.html_safe
     end
+  end
+
+
+  def results_heading
+    output = '<h1>'
+    if @q.blank?
+      output << "Showing all records."
+    else
+      if @total > 0
+        output << "Found matches for <span class=\"query-term\">#{@q}</span> in #{@total} records."
+      else
+        output << "Your search for <span class=\"query-term\">#{@q}</span> returned no results."
+      end
+    end
+    output << '</h1>'
+    output.html_safe
   end
 
 end

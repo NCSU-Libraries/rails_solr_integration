@@ -9,8 +9,6 @@ class SearchController < ApplicationController
     @q = params[:q]
     @page = params[:page] || 1
     @per_page = params[:per_page] || 20
-    @total = Order.count
-    @pages = (@total.to_f / @per_page.to_i).ceil
     @sort = params[:sort] || :id
 
 
@@ -21,8 +19,10 @@ class SearchController < ApplicationController
       params[:filters] ||= {}
     end
 
+
     # remove filters with no value
     params[:filters].delete_if { |k,v| v.blank? }
+
 
     # @filters only include facet values included in the request. Additional filters may be added to the query as needed.
     @filters = !params[:filters].blank? ? params[:filters].clone : {}
@@ -49,6 +49,9 @@ class SearchController < ApplicationController
     #   to the instance variable @solr_response
     s = Search.new(params)
     @solr_response = s.execute
+    @docs = @solr_response['response']['docs']
+    @total = @solr_response['response']['numFound']
+    @pages = (@total.to_f / @per_page.to_i).ceil
 
 
     # Respond according to requested format

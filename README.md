@@ -2,6 +2,7 @@
 
 A Rails design pattern for implementing Solr indexing and search.
 
+
 ## Configuration
 
 ### Rsolr
@@ -39,6 +40,7 @@ It provides some common class and instance methods that you can use on your mode
 
 The Search model is used to execute queries against a Solr index. By default, searches will use the eDisMax query parser, which attempts to match the query term in one or more fields, giving different weight to matches in different fields according the parameters sent to Solr using the 'qf' (query fields) parameter. These values should be specified in this file (assigned to the `@@query_fields` class variable). You can also specify default values for certain other query paramters here. Detailed instructions in code.
 
+
 ## Usage
 
 At a minimum, you will need a search controller with at least one action, and a route to enable that action to process HTTP requests.
@@ -55,6 +57,10 @@ Include this line to provide a route to your Search controller:
 get 'search(.:format)' => 'search#index', as: 'searches'
 ```
 
-### app/views/\_search_form.html.erb
+### app/helpers/search_helper.rb
 
+Provides a variety of helper methods for use in views.
 
+### app/views/search/index.html.erb
+
+Provides a very basic implementation of search form and results.

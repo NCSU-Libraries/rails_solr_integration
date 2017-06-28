@@ -1,0 +1,40 @@
+<!-- Search form -->
+<%= form_tag(searches_path, method: 'get', class: 'search-form', id: 'search-form') do %>
+  <%= search_field_tag(:q, params[:q] || "", placeholder: "Enter search terms", class: "search-query") %>
+  <%= submit_tag("Search", name: nil) %>
+<% end %>
+<!-- END Search form -->
+
+
+
+<!-- Results -->
+
+<!-- display facets to filter results - see app/helpers/search_helper.rb) -->
+<%= facet_options %>
+
+<!-- display results heading - see app/helpers/search_helper.rb -->
+<%= results_heading %>
+
+<!-- display currently active filters (selected facets) - see app/helpers/search_helper.rb -->
+<%= active_filters %>
+
+<!-- repeat pagination links at the bottom of the page - see app/helpers/search_helper.rb -->
+<%= search_pagination %>
+
+
+<!-- iterate over all search results -->
+<div class="search-results">
+<% @docs.each do |d| %>
+
+  <div class="search-result">
+    <!-- Display desired fields for each Solr doc returned  -->
+  </div>
+
+<% end %>
+</div>
+
+
+<!-- repeat pagination links at the bottom of the page -->
+<%= search_pagination %>
+
+<!-- END results -->
