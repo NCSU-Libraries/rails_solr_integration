@@ -87,3 +87,11 @@ Provides a variety of helper methods for use in views.
 #### app/views/search/index.html.erb
 
 Provides a very basic implementation of search form and results.
+
+
+### Rake tasks
+
+Add `lib/tasks/search_index.rake` to your project to make these rake tasks available:
+
+* search_index:full - index all records
+* search_index:full_clean - clean the index first, then index all records
