@@ -61,7 +61,7 @@ This will add the following instance methods to the model:
 * update_index() - adds or updates the record in the index
 * delete\_from_index() - removes the record from the index
 * solr\_doc_data() - prepares and returns a hash of record attributes sent to Solr. See configuration above.
-* solr_id - generates the value for the Solr id field
+* solr_id() - generates the value for the Solr id field
 
 
 ### Controllers/views/helpers
