@@ -8,6 +8,8 @@ module SolrDoc
 
     after_commit :update_index, on: [:create, :update]
 
+    before_destroy :delete_from_index
+
     # Prepare Solr document hash for the record
     def solr_doc_data
       doc = {}
