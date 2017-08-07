@@ -139,6 +139,8 @@ class Search
     @lucene = options[:lucene] || nil
     @start = options[:start] || ((@page.to_i - 1) * @per_page)
     @sort = options[:sort]
+    @solr_url = options[:solr_url] || @@solr_url
+    @query_fields = options[:query_fields] || @@query_fields
   end
 
   attr_accessor :q, :page, :per_page, :filters, :wt, :lucene
@@ -146,7 +148,7 @@ class Search
 
   def set_solr_params
     # Specify Ruby as Solr response format
-    @solr_params = { :wt => options[:wt] || @@wt_default }
+    @solr_params = { :wt => @options[:wt] || @@wt_default }
     @solr_params[:start] = @start
     @solr_params[:rows] = self.per_page
     @solr_params[:sort] = @sort ? @sort : nil
@@ -178,8 +180,8 @@ class Search
 
       # Set qf using @@query_fields config
       @solr_params[:qf] = ''
-      @@query_fields.each do |k,v|
-        @solr_params[:qf] += " #{k}"
+      @query_fields.each do |k,v|
+        @solr_params[:qf] += " #{ k.to_s }"
         @solr_params[:qf] += v ? "^#{v}" : ''
       end
       @solr_params[:qf].strip!
@@ -200,8 +202,8 @@ class Search
       @solr_params[:mm] = @options[:mm] || @@mm_default
 
       # phrase fields/slop
-      @solr_params[:pf] = options[:pf] || @@query_fields.keys
-      @solr_params[:ps] = options[:ps] || @@ps_default
+      @solr_params[:pf] = @options[:pf] || @query_fields.keys
+      @solr_params[:ps] = @options[:ps] || @@ps_default
 
     else
       @solr_params[:defType] = 'lucene'
@@ -240,7 +242,7 @@ class Search
 
 
   def execute
-    @solr = RSolr.connect :url => @@solr_url
+    @solr = RSolr.connect :url => @solr_url
     set_solr_params()
     @response = @solr.paginate self.page, self.per_page, "select", :params => @solr_params
   end
