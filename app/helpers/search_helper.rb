@@ -164,4 +164,8 @@ module SearchHelper
     output.html_safe
   end
 
+  def filters_heading
+    "Filter#{ @all_resources ? '' : ' results'}:"
+  end
+
 end
